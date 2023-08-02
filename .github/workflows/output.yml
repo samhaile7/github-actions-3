@@ -1,0 +1,12 @@
+name: Issue log
+on: [issues, workflow_dispatch]
+jobs:
+  log:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+
+      - name: log issue
+        run: echo "logging issue"       
+            

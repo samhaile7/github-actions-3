@@ -1,0 +1,35 @@
+name: Deployment workflow (Lint, test, and deploy on push
+on: [push, workflow_dispatch]
+jobs:
+  linttest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+
+      - name: install dep
+        run: npm ci
+
+      - name: lint
+        run: npm lint
+
+      - name: test
+        run: npm test
+
+  deploy:
+    needs: linttest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+
+      - name: install dep
+        run: npm ci
+
+      - name: build
+        run: npm build 
+        
+      - name: Deploy
+        run: echo "Deploying"       
+            
+
